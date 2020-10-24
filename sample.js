@@ -1,14 +1,14 @@
-// Symbolモノの名前を作成する型(文字列じゃない)
-// シンボルを生成
-let sym1 = Symbol('sym');
-let sym2 = Symbol('sym');
+var data = [2, 3, 4, 5];
 
-// 定数の値として利用
-const MONDAY = Symbol();
+// 配列の内容を順番に処理
+// forEach文(value=値,index=番号,array=元の配列)
+data.forEach(function (value, index, array) {
+    console.log(value * value);
+}); //4,9,16,25
 
-// エラーが出る
-console.log(sym1 + '');
-console.log(sym1 - 0);
-// Boolean型は可
-console.log(typeof !!sym1);
-
+// 配列を指定のルールで加工
+// mapメソッド
+var result1 = data.map(function (value, index, array) {
+    return value * value;
+});
+console.log(result1); //[4,9,16,25]
