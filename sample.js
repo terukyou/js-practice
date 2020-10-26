@@ -1,20 +1,17 @@
-// function命令
-function getTriangle(base, height) {
-    return base * height / 2;
-}
-
-// functionコンストラクター(非推奨)
-var getTriangle = new Function('base', 'height', 'return base*height/2');
-
-// 関数リテラル
-var getTriangle = function (base, right) {
-    return base * right / 2;
-};
-
-// アロー関数
-let getTriangle = (base, height) => {
+// 関数はデータ型
+var getTriangle = function (base, height) {
     return base * height / 2;
 };
-// 一文の時(引数ひとつ->()省略可、引数無し->()省略不可)
-let getTriangle = (base, height) => base * height / 2;
+getTriangle = 0; //エラーにならない
 
+// function命令は静的(プログラムの実行時に確定している)な構造を宣言
+console.log(getTriangle2(5, 2));
+function getTriangle2(base, height) {
+    return base * height / 2;
+}; //エラーにならない
+
+// 関数リテラル、functionコンストラクターは動的(プログラムの実行時に確定していない)構造を宣言
+console.log(getTriangle3(5, 2));
+var getTriangle3 = function (base, height) {
+    return base * height / 2;
+}; //エラーになる
