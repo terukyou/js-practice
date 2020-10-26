@@ -8,13 +8,12 @@ document.addEventListener('DOMContentLoaded',
                 // テキストファイルの内容を取得
                 reader.addEventListener('load', //ファイルの読み込みが実行されてるわけじゃない
                     function () {
-                        document.getElementById("result").textContent = reader.result;
+                        document.getElementById("result").src = reader.result;
                     }, true);
                 reader.addEventListener('error', //エラーが発生したとき
                     function () {
                         console.log(reader.error.message);
                     }, true);
-                reader.readAsText(input, 'UTF-8'); //ファイルの読み込み
-                reader.abort();
+                reader.readAsDataURL(input, 'UTF-8'); //ファイルの読み込み
             })
     }, true);
