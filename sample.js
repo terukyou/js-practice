@@ -1,7 +1,6 @@
-// ページロード時に実行されるイベントハンドラー(イベントに対応してその処理内容を定義するコードの塊)を登録
-window.onload = function () {
-    // btnをクリックした時に実行されるイベントハンドラーを登録
-    document.getElementById('btn').onclick = function () {
+// ページロード時に実行されるイベントリスナー(同一要素の同一イベントに対しても複数紐づけできる)を登録
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('btn').addEventListener('click', function () { //btnクリック時に実行されるイベントリスナー
         window.alert('ボタンがクリックされました');
-    }
-}
+    }, false);
+}, false);
