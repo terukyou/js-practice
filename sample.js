@@ -1,19 +1,20 @@
 document.addEventListener('DOMContentLoaded',
     function () {
-        document.getElementById("file").addEventListener('change',
-            function (e) {
-                // 単一選択なので、0で決め打ち
-                var input = document.getElementById("file").files[0];
-                var reader = new FileReader();
-                // テキストファイルの内容を取得
-                reader.addEventListener('load', //ファイルの読み込みが実行されてるわけじゃない
-                    function () {
-                        document.getElementById("result").src = reader.result;
-                    }, true);
-                reader.addEventListener('error', //エラーが発生したとき
-                    function () {
-                        console.log(reader.error.message);
-                    }, true);
-                reader.readAsDataURL(input, 'UTF-8'); //ファイルの読み込み
-            })
+        document.getElementById('btn').addEventListener('click',
+            function () {
+                // テキストボックスを取得
+                var name = document.getElementById('name');
+                var url = document.getElementById('url');
+                // <a>要素を生成
+                var anchor = document.createElement('a');
+                anchor.href = url.value;
+                // テキスとノードを生成、aの直下に追加
+                var text = document.createTextNode(name.value);
+                anchor.appendChild(text);
+
+                var br = document.createElement('br');
+                var list = document.getElementById('list');
+                list.appendChild(anchor);
+                list.appendChild(br);
+            }, false);
     }, true);
