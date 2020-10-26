@@ -6,18 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-        <div>
-            <label for="name">サイト名</label>
-            <input type="text" name="name" id="name" size="30">
-        </div>
-        <div>
-            <label for="url">URL:</label>
-            <input type="text" name="url" id="url" size="50">
-        </div>
-        <div><input type="button" value="追加" id="btn"></div>
-    </form>
-    <div id="list"></div>
+    <ul id="list">
+        <li><a href="JavaScript:void(0)" data-isbn="978-4-7981-3547-1">独習PHP第１版</a></li>
+        <li><a href="JavaScript:void(0)" data-isbn="978-4-7981-3547-2">独習PHP第2版</a></li>
+        <li><a href="JavaScript:void(0)" data-isbn="978-4-7981-3547-3">独習PHP第3版</a></li>
+        <li><a href="JavaScript:void(0)" data-isbn="978-4-7981-3547-4">独習PHP第4版</a></li>
+        <li><a href="JavaScript:void(0)" data-isbn="978-4-7981-3547-5">独習PHP第5版</a></li>
+    </ul>
+    <input type="button" value="削除" id="del" disabled/>
+    <div id="pic"></div>
     <script src="sample.js"></script>
 </body>
 </html>

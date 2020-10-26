@@ -1,20 +1,31 @@
 document.addEventListener('DOMContentLoaded',
     function () {
-        document.getElementById('btn').addEventListener('click',
-            function () {
-                // テキストボックスを取得
-                var name = document.getElementById('name');
-                var url = document.getElementById('url');
-                // <a>要素を生成
-                var anchor = document.createElement('a');
-                anchor.href = url.value;
-                // テキスとノードを生成、aの直下に追加
-                var text = document.createTextNode(name.value);
-                anchor.appendChild(text);
+        var list = document.getElementById('list');
+        var pic = document.getElementById('pic');
+        var del = document.getElementById('del');
 
-                var br = document.createElement('br');
-                var list = document.getElementById('list');
-                list.appendChild(anchor);
-                list.appendChild(br);
+        list.addEventListener('click',
+            function (e) {
+                var isbn = e.target.getAttribute('data-isbn');
+                if (isbn) {
+                    var img = document.createElement('img');
+                    img.src = 'http://www.wings.msn.to/books/' + isbn + '/' + isbn + '.jpg';
+                    img.alt = e.target.textContent;
+                    img.height = 150;
+                    img.width = 108;
+                    if (pic.getElementsByTagName('img').length > 0) {
+                        pic.replaceChild(img, pic.lastChild);
+                    } else {
+                        del.disabled = false;
+                        pic.appendChild(img);
+                    }
+                }
             }, false);
-    }, true);
+        del.addEventListener('click',
+            function () {
+                pic.removeChild(pic.lastChild);
+                del.disabled = true;
+            }, false);
+    }, false);
+
+
