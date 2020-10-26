@@ -1,10 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // #logoを取得
-    var logo = document.getElementById('logo');
-    // img要素に含まれる属性リストを取得
-    var attrs = logo.attributes;
-    for (var i = 0, len = attrs.length; i < len; i++) {
-        attr = attrs.item(i);
-        console.log(attr.name + ':' + attr.value); //id:logo
-    }
+    // HTML文字列として認識しない
+    document.getElementById('result_text').textContent = '<a href="https://wings.msn.to/">WINGSプロジェクト</a>';
+    // HTML文字列として認識
+    document.getElementById('result_html').innerHTML = '<a href="https://wings.msn.to/">WINGSプロジェクト</a>';
 }, false);
