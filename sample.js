@@ -1,31 +1,14 @@
 document.addEventListener('DOMContentLoaded',
     function () {
-        // ラジオボタンの初期値の設定
-        var setRadioValue = function (name, value) {
-            var elems = document.getElementsByName(name);
-            for (var i = 0, len = elems.length; i < len; i++) {
-                var elem = elems.item(i);
-                if (elem.value === value) { //値が初期値を同じとき
-                    elem.checked = true;
-                    break;
-                }
-            }
-        };
-        setRadioValue('food', '餃子');
-        var getRadioValue = function (name) {
-            var result = '';
-            var elems = document.getElementsByName(name);
-            for (var i = 0, len = elems.length; i < len; i++) {
-                var elem = elems.item(i);
-                if (elem.checked) {
-                    result = elem.value;
-                    break; //チェックは一つしかないからここでストップ
-                }
-            }
-            return result;
-        };
-        document.getElementById('btn').addEventListener('click',
+        document.getElementById("file").addEventListener('change',
             function () {
-                window.alert(getRadioValue('food'))
-            }, false);
-    }, false);
+                var inputs = document.getElementById("file").files;
+                for (var i = 0, len = inputs.length; i < len; i++) {
+                    var input = inputs[i];
+                    console.log('ファイル名:' + input.name);
+                    console.log('種類:' + input.type);
+                    console.log('サイズ:' + input.size);
+                    console.log('最終更新日:' + input.lastModifiedDate);
+                }
+            })
+    }, true);
