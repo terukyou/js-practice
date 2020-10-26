@@ -1,6 +1,10 @@
-// ページロード時に実行されるイベントリスナー(同一要素の同一イベントに対しても複数紐づけできる)を登録
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('btn').addEventListener('click', function () { //btnクリック時に実行されるイベントリスナー
-        window.alert('ボタンがクリックされました');
-    }, false);
+    // #logoを取得
+    var logo = document.getElementById('logo');
+    // img要素に含まれる属性リストを取得
+    var attrs = logo.attributes;
+    for (var i = 0, len = attrs.length; i < len; i++) {
+        attr = attrs.item(i);
+        console.log(attr.name + ':' + attr.value); //id:logo
+    }
 }, false);
