@@ -1,13 +1,8 @@
 document.addEventListener('DOMContentLoaded',
     function () {
-        var main = document.getElementById('main');
-        main.addEventListener('mousemove', //マウスの場所を取得a
+        document.getElementById('key').addEventListener('keydown',
             function (e) {
-                main.innerHTML =
-                    'screen' + e.screenX + '' + e.screenY + '<br/>' +
-                    +'page' + e.pageX + '' + e.pageY + '<br/>' +
-                    +'client' + e.clientX + '' + e.clientY + '<br/>' +
-                    +'offset' + e.offsetX + '' + e.offsetY + '<br/>';
+                console.log('キーコード:' + e.keyCode);
             }, false);
     }, false);
 
