@@ -1,18 +1,14 @@
-document.addEventListener('DOMContentLoaded',
-    function () {
-        document.getElementById('inner').addEventListener('click',
-            function (e) {
-                window.alert('#innerリスナーが発生');
-                // e.stopPropagation(); //#outerリスナーが発生のやつがキャンセル
-            }, false);
-        document.getElementById('inner').addEventListener('click',
-            function (e) {
-                window.alert('#inner2リスナーが発生');
-            }, false);
-        document.getElementById('outer').addEventListener('click',
-            function (e) {
-                window.alert('#outer リスナーが発生しました');
-            }, false);
-    }, false);
+document.addEventListener('DOMContentLoaded', function () {
+    var data = {
+        title: 'Javaポケットリファレンス',
+        price: 2680,
+        show: function () {
+            //ここのthisはオブジェクト自身じゃなくボタンを指している
+            console.log(this.title + '/' + this.price + '円');
+        }
+    };
+    document.getElementById('btn').addEventListener('click', data.show, false); //「/undefined円」
+    document.getElementById('btn').addEventListener('click', data.show.bind(data), false); //「Javaポケットリファレンス/2680円」
+}, false);
 
 
