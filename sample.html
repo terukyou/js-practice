@@ -6,20 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-        <label for="isbn">書籍:</label>
-        <select name="isbn" id="isbn">
-            <option value="">書籍名を選択してください</option>
-            <option value="1111">1111</option>
-            <option value="2222">2222</option>
-            <option value="3333">3333</option>
-            <option value="4444">4444</option>
-            <option value="5555">5555</option>
-        </select>
-        <!-- 履歴の前後のページへ移動()に数字を入れるとその数だけ進む、戻る -->
-        <a href="JavaScript:history.back()">戻る</a>
-        <a href="JavaScript:history.forward()">進む</a>
-    </form>
+    <input type="button" value="カウントアップ" id="btn">
+    <span id="result">-</span>回クリックされました
     <script src="sample.js"></script>
 </body>
 </html>
