@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded',
     function () {
-        var second = document.getElementById('second');
-        var li = document.getElementsByTagName('li');
-        for (var i = 0, len = li.length; i < len; i++) { //i<li.lengthだと無限ループに...
-            var item = li.item(i);
-            var new_li = document.createElement('li');
-            var new_text = document.createTextNode(item.textContent);
-            new_li.appendChild(new_text);
-            second.appendChild(new_li);
-        }
+        var elem = document.getElementById('elem');
+        elem.addEventListener('mouseover', // マウスが乗った時
+            function () {
+                this.style.backgroundColor = 'Yellow';
+            }, false);
+        elem.addEventListener('mouseout', //マウスが外れた時
+            function () {
+                this.style.backgroundColor = "";
+            })
     }, false);
 
 
