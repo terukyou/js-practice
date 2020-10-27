@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded',
     function () {
-        var btn = document.getElementById('btn');
-        var listener = function () {
-            window.alert('こんにちは、世界！');
-        };
-        // イベントリスナーを登録
-        btn.addEventListener('click', listener, false);
-        // イベントリスナーを削除
-        // btn.removeEventListener('click', listener, false);
+        document.getElementById('btn').addEventListener('click',
+            function (e) { //eでイベントオブジェクトを受け取る
+                var target = e.target;
+                console.log('発生元:' + target.nodeName + '/' + target.id);
+                console.log('種類:' + e.type);
+            }, false);
     }, false);
 
 
