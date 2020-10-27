@@ -10,11 +10,16 @@ function asyncProcess(value) {
     });
 }
 
-asyncProcess('').then(
+asyncProcess('徳次郎').then(
     response => {
         console.log(response);
-    },
-    error => {
-        console.log(`エラー:${error}`);
+        return asyncProcess('ニンサブロウ');
     }
 )
+    .then(
+        response => {
+            console.log(response);
+        }, error => {
+            console.log(`エラー:${error}`);
+        }
+    );
