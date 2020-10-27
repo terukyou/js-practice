@@ -1,11 +1,10 @@
-document.addEventListener('DOMContentLoaded',
+window.onload =
     function () {
-        var elem = document.getElementById('elem');
-        elem.addEventListener('click', // マウスが乗った時
+        var btn = document.getElementById('btn');
+        btn.onclick =
             function () {
-                // 条件演算子不要、文字列の分割不要
-                this.classList.toggle("highlight");
-            }, false);
-    }, false);
+                window.alert('こんにちは世界');
+            };
+        btn.onclick = null;
 
-
+    }
