@@ -1,13 +1,4 @@
-// スタックトレースが分かる
-function call1() {
-    call2();
-}
-function call2() {
-    call3();
-}
-function call3() {
-    console.trace();
-}
-
-call1();
-
+var storage = localStorage;
+storage.setItem('fruit1', 'リンゴ');
+storage.fruit2 = 'みかん';
+storage['fruit3'] = 'ブドウ'; //おすすめ！
