@@ -1,13 +1,15 @@
-var Member = function (firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-};
+// インスタンスのメンバー追加や削除はプロトタイプに影響しない
+// プロパティの変更
+var Member = function () { };
+Member.prototype.sex = '男';
+var mem1 = new Member();
+var mem2 = new Member();
+console.log(mem1.sex + '|' + mem2.sex); //男❘男
+mem2.sex = '女';
+// プロトタイプの参照はインスタンスにあるか確認してから
+console.log(mem1.sex + '|' + mem2.sex); //男|女
 
-Member.prototype.getName = function () { //Memberオブジェの原型がプロトタイプ
-    return this.lastName + ' ' + this.firstName;
-};
-var m = new Member('さとし', '山田');
-console.log(m.getName());
-// プロトタイプを使う利点
-// ・メソッドをコンストラクターに入れるよりプロトタイプの方がメモリの使用量が少ない！！(コンストラクターはコピーする度メソッドもコピー)
-// 追加や変更をインスタンスがリアルタイムに認識可！！！
+// プロパティの削除
+delete mem1.sex //インスタンスになくてもプロトタイプまでは削除しにいかない
+delete men2.sex
+console.log(mem1.sex + '|' + mem2.sex); //男|男
