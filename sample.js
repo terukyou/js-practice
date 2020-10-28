@@ -1,16 +1,12 @@
-var data = 'global data';
-var obj1 = { data: 'obj1 data' };
-var obj2 = { data: 'obj2 data' };
+var Member = function (firstName, lastName) {
+    // if (!(this instanceof Member)) { //thisがMemberオブジェじゃない時(firstname,lastnameをグローバル変数として定義させない)
+        // return new Member(firstName, lastName)
+    // }
+    this.firstName = firstName;
+    this.lastName = lastName;
+};
 
-function hoge() {
-    console.log(this.data);
-}
-hoge.call(null); //callメソッドでthisが何を指すのか指定できる
-hoge.call(obj1);
-hoge.call(obj2);
-
-function hoge() { //callメソッドで配列っぽいオブジェクトを配列にできる
-    var args = Array.prototype.slice.call(arguments); //arguments=配列風オブジェクト
-    console.log(args.join('/'));
-}
-hoge('AngularK', 'React', 'Backbone');
+var m = Member('さとし', '山田');
+console.log(m); //undefined
+console.log(lastName); //'さとし',ifのコメを戻すとリファレンスエラーに
+console.log(m.firstName); //エラー
