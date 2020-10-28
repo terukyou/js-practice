@@ -9,17 +9,29 @@ function asyncProcess(value) {
         }, 500);
     });
 }
-
-asyncProcess('徳次郎').then(
+// すべての処理が成功したときコールバック(all)
+Promise.all([
+    asyncProcess('トクジロウ'),
+    asyncProcess('ニン'),
+    asyncProcess('サン')
+]).then(
     response => {
-        console.log(response);
-        return asyncProcess('ニンサブロウ');
+        console.log(response); //0: "入力値:トクジロウ;"1: "入力値:ニン;"2: "入力値:サン;"
+    },
+    error => {
+        console.log(`エラー:${error}`);
     }
-)
-    .then(
-        response => {
-            console.log(response);
-        }, error => {
-            console.log(`エラー:${error}`);
-        }
-    );
+);
+// いずれ一つが最初に完了したらコールバック(race)
+Promise.race([
+    asyncProcess('トクジロウ'),
+    asyncProcess('ニン'),
+    asyncProcess('サン')
+]).then(
+    response => {
+        console.log(response); //0: "入力値:トクジロウ;"1: "入力値:ニン;"2: "入力値:サン;"
+    },
+    error => {
+        console.log(`エラー:${error}`); //入力値:トクジロウ;
+    }
+);
