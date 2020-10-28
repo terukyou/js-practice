@@ -1,12 +1,13 @@
 var Member = function (firstName, lastName) {
-    // if (!(this instanceof Member)) { //thisがMemberオブジェじゃない時(firstname,lastnameをグローバル変数として定義させない)
-        // return new Member(firstName, lastName)
-    // }
     this.firstName = firstName;
     this.lastName = lastName;
 };
 
-var m = Member('さとし', '山田');
-console.log(m); //undefined
-console.log(lastName); //'さとし',ifのコメを戻すとリファレンスエラーに
-console.log(m.firstName); //エラー
+Member.prototype.getName = function () { //Memberオブジェの原型がプロトタイプ
+    return this.lastName + ' ' + this.firstName;
+};
+var m = new Member('さとし', '山田');
+console.log(m.getName());
+// プロトタイプを使う利点
+// ・メソッドをコンストラクターに入れるよりプロトタイプの方がメモリの使用量が少ない！！(コンストラクターはコピーする度メソッドもコピー)
+// 追加や変更をインスタンスがリアルタイムに認識可！！！
