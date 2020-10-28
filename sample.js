@@ -1,37 +1,16 @@
-function asyncProcess(value) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (value) {
-                resolve(`入力値:${value};`);
-            } else {
-                reject('入力は空です');
-            }
-        }, 500);
-    });
-}
-// すべての処理が成功したときコールバック(all)
-Promise.all([
-    asyncProcess('トクジロウ'),
-    asyncProcess('ニン'),
-    asyncProcess('サン')
-]).then(
-    response => {
-        console.log(response); //0: "入力値:トクジロウ;"1: "入力値:ニン;"2: "入力値:サン;"
-    },
-    error => {
-        console.log(`エラー:${error}`);
-    }
-);
-// いずれ一つが最初に完了したらコールバック(race)
-Promise.race([
-    asyncProcess('トクジロウ'),
-    asyncProcess('ニン'),
-    asyncProcess('サン')
-]).then(
-    response => {
-        console.log(response); //0: "入力値:トクジロウ;"1: "入力値:ニン;"2: "入力値:サン;"
-    },
-    error => {
-        console.log(`エラー:${error}`); //入力値:トクジロウ;
-    }
-);
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('btn').addEventListener('click', function () {
+        var worker = new Worker('sample2.js');
+        worker.postMessage({
+            'target': document.getElementById('target').value,
+            'x': document.getElementById('x').value,
+        });
+        document.getElementById('result').textContent = "計算中...";
+        worker.addEventListener('message', function (e) {
+            document.getElementById('result').textContent = e.data;
+        }, false);
+        worker.addEventListener('error', function (e) {
+            document.getElementById('result').textContent = e.message;
+        }, false);
+    }, false);
+}, false);
