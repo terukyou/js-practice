@@ -1,11 +1,16 @@
-var Member = function (firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    Object.seal(this); //後からプロパティを追加・削除したらエラーとなる
-};
+var data = 'global data';
+var obj1 = { data: 'obj1 data' };
+var obj2 = { data: 'obj2 data' };
 
-var mem = new Member('たけし', '山田');
-mem.getName = function () {
-    return this.lastName + '' + this.firstName;
+function hoge() {
+    console.log(this.data);
 }
-console.log(mem.getName());
+hoge.call(null); //callメソッドでthisが何を指すのか指定できる
+hoge.call(obj1);
+hoge.call(obj2);
+
+function hoge() { //callメソッドで配列っぽいオブジェクトを配列にできる
+    var args = Array.prototype.slice.call(arguments); //arguments=配列風オブジェクト
+    console.log(args.join('/'));
+}
+hoge('AngularK', 'React', 'Backbone');
