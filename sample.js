@@ -1,18 +1,23 @@
+// インスタンスが生成された時点でプロトタイプチェーンは固定される
 var Animal = function () { };
 Animal.prototype = {
     walk: function () {
         console.log('トコトコ');
     }
 };
-
-var Dog = function () {
-    Animal.call(this);
+var SuperAnimal = function () { };
+SuperAnimal.prototype = {
+    walk: function () {
+        console.log('だだだだだ');
+    }
 };
-Dog.prototype = new Animal();
-Dog.prototype.bark = function () {
-    console.log('わんわん');
-}
+var Dog = function () { };
 
-var d = new Dog();
-d.walk(); //トコトコ
-d.bark(); //わんわん
+Dog.prototype = new Animal();
+var d1 = new Dog();
+d1.walk(); //トコトコ
+
+Dog.prototype = new SuperAnimal();
+var d2 = new Dog();
+d2.walk(); //だだだだ
+d1.walk(); //トコトコ
