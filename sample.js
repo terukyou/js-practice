@@ -1,19 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var getRadioValue = function (name) {
-        var result = '';
+    var setCheckValue = function (name, value) {
         var elems = document.getElementsByName(name);
-
         for (var i = 0, len = elems.length; i < len; i++) {
             var elem = elems.item(i);
-            if (elem.checked) {
-                result = elem.value;
-                break;
+            if (value.indexOf(elem.value) > -1) {
+                elem.checked = true;
             }
         }
-        return result;
-    }
-    document.getElementById('btn').addEventListener('click', function () {
-        window.alert(getRadioValue('food'));
-    }, false);
+    };
+    setCheckValue('food', ['餃子', '焼肉']);
 }, false);
 
