@@ -1,16 +1,14 @@
-function namespace(ns) {
-    // 名前空間を「.」区切りで分割
-    var names = ns.split('.');
-    var parent = window;
-    // 名前空間を上位から順に登録
-    for (var i = 0, len = names.length; i < len; i++) {
-        parent[names[i]] = parent[names[i]] || {};
-        parent = parent[names[i]];
+class Member {
+    // コンストラクタの定義
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
-    return parent;
+    // メソッドの定義
+    getName() {
+        return this.lastName + this.firstName;
+    }
 }
 
-var my = namespace('Wings.Gihyo.Js.MyApp');
-my.Person = function () { };
-var p = new my.Person();
-console.log(p instanceof Wings.Gihyo.Js.MyApp.Person); //true
+let m = new Member('太郎', '山田');
+console.log(m.getName());
