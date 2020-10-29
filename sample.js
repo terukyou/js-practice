@@ -4,27 +4,33 @@ function Triangle() {
     // プライベートプロパティの定義
     var _base;
     var _height;
-    // プライベートメソッドの定義
-    var _checkArgs = function (val) {
-        return (typeof val === 'number' && val > 0);
-    }
-    // プライベートメンバーにアクセスするためのメソッドを定義
-    this.setBase = function (base) {
-        if (_checkArgs(base)) {
-            _base = base;
+    // アクセサリーメソッドをまとめる
+    Object.defineProperties(
+        this, {
+        base: {
+            // ゲッターメソッド(参照用のメソッド)
+            get: function () {
+                return _base;
+            },
+            // セッターメソッド(設定用のメソッド)
+            set: function (base) {
+                if (typeof tmp === 'number' && base > 0) {
+                    _base = base;
+                }
+            }
+        },
+        height: {
+            get: function () {
+                return _height;
+            },
+            set: function (height) {
+                if (typeof tmp === 'number' && height > 0) {
+                    _height = height;
+                }
+            }
         }
     }
-    this.getBase = function () {
-        return _base;
-    }
-    this.setHeight = function (height) {
-        if (_checkArgs(height)) {
-            _height = height;
-        }
-    }
-    this.getHeight = function () {
-        return _height;
-    }
+    );
 }
 
 Triangle.prototype.getArea = function () {
