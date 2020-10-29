@@ -7,11 +7,17 @@
 </head>
 <body>
     <form>
-        <label for="file">ファイル</label>
-        <input type="file" id="file" name="file" multiple>
+        <div>
+            <label for="name">サイト名</label>
+            <input type="text" name="name" id="name" size="30">
+        </div>
+        <div>
+            <label for="url">URL:</label>
+            <input type="text" name="url" id="url" size="50">
+        </div>
+        <div><input type="button" value="追加" id="btn"></div>
     </form>
-    <hr>
-    <img id="result" />
+    <div id="list"></div>
     <script src="sample.js"></script>
 </body>
 </html>
