@@ -1,14 +1,16 @@
-// 名前空間を定義(Wingsが未定義の時のみ)
-var Wings = Wings || {};
-Wings.Member = function (firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-};
-Wings.Member.prototype = {
-    getName: function () {
-        return this.lastName + '' + this.firstName;
+function namespace(ns) {
+    // 名前空間を「.」区切りで分割
+    var names = ns.split('.');
+    var parent = window;
+    // 名前空間を上位から順に登録
+    for (var i = 0, len = names.length; i < len; i++) {
+        parent[names[i]] = parent[names[i]] || {};
+        parent = parent[names[i]];
     }
-};
+    return parent;
+}
 
-var mem = new Wings.Member('ひろし', '山田');
-console.log(mem.getName()); //山田ひろし
+var my = namespace('Wings.Gihyo.Js.MyApp');
+my.Person = function () { };
+var p = new my.Person();
+console.log(p instanceof Wings.Gihyo.Js.MyApp.Person); //true
