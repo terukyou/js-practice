@@ -1,28 +1,43 @@
-var Animal = function () { };
+// プライベートメンバーはコンストラクター関数で定義 varで宣言(thisを使わない)
+// 特権メソッドを定義プライベートメンバーにアクセス
+function Triangle() {
+    // プライベートプロパティの定義
+    var _base;
+    var _height;
+    // プライベートメソッドの定義
+    var _checkArgs = function (val) {
+        return (typeof val === 'number' && val > 0);
+    }
+    // プライベートメンバーにアクセスするためのメソッドを定義
+    this.setBase = function (base) {
+        if (_checkArgs(base)) {
+            _base = base;
+        }
+    }
+    this.getBase = function () {
+        return _base;
+    }
+    this.setHeight = function (height) {
+        if (_checkArgs(height)) {
+            _height = height;
+        }
+    }
+    this.getHeight = function () {
+        return _height;
+    }
+}
 
-var Hamster = function () { };
-Hamster.prototype = new Animal();
+Triangle.prototype.getArea = function () {
+    return this.getBase() * this.getHeight() / 2;
+}
 
-var a = new Animal();
-var h = new Hamster();
+var t = new Triangle();
+t._base = 10;
+t._height = 2;
+console.log(t.getArea()); //NaN
 
-// constructor,instanceofは元の関数オブジェクトを取得
-console.log(a.constructor === Animal); //true
-console.log(h.constructor === Animal); //true
-console.log(h.constructor === Hamster); //false(プロトタイプ継承)
-
-// コンストラクタもプロトタイプも判定
-console.log(h instanceof Animal); //true
-console.log(h instanceof Hamster); //true
-
-// isPrototypeOfは参照元のプロトタイプを確認
-console.log(Hamster.prototype.isPrototypeOf(h)); //true
-console.log(Animal.prototype.isPrototypeOf(h)); //true
-
-// メンバーの有無を判定(in)
-var obj = {
-    hoge: function () { },
-    foo: function () { },
-};
-console.log('hoge' in obj); //true
-console.log('piyo' in obj); //false
+t.setBase(10);
+t.setHeight(2);
+console.log(t.getBase()); //10
+console.log(t.getHeight()); //2
+console.log(t.getArea()); //10
