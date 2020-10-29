@@ -1,9 +1,31 @@
-let data_ary = ['one', 'two', 'three'];
-// [Symbol.iterator]メソッドは配列の要素を列挙する
-let itr = data_ary[Symbol.iterator]();
-let d;
-while (d = itr.next()) { //配列の次の要素を取り出す
-    if (d.done) { break; }
-    console.log(d.done); //false,false,false 次の要素がないか
-    console.log(d.value); //one,two,three 次の要素の値
+class MyIterator {
+    // 引数経由で渡された配列をdataプロパティに設定
+    constructor(data) {
+        this.data = data;
+    }
+
+    // デフォルトイテレーターを取得するためのメソッドを定義
+    [Symbol.iterator]() {
+        let current = 0;
+        let that = this;
+        return {
+            // dataプロパティの次の要素を取得
+            next() {
+                return current < that.data.length ?
+                    {
+                        value: that.data[current++],
+                        done: false
+                    }
+                    :
+                    {
+                        done: true
+                    }
+            }
+        };
+    }
+}
+
+let itr = new MyIterator(['one', 'two', 'three']);
+for (let value of itr) {
+    console.log(value);
 }
