@@ -1,17 +1,9 @@
 let data_ary = ['one', 'two', 'three'];
-let data_str = 'あいうえお';
-let data_map = new Map([
-    ['MON', '月曜'],
-    ['TUE', '火曜'],
-    ['WED', '水曜']
-]);
-// for...ofでオブジェクトの内容を列挙(イテレーター)できる
-for (let d of data_ary) {
-    console.log(d); //one,two,three
-}
-for (let d of data_str) {
-    console.log(d); //あ,い,う,え,お
-}
-for (let [key, value] of data_map) {
-    console.log(`${key}:${value}`); //MON:月曜,TUE:火曜,WED:水曜
+// [Symbol.iterator]メソッドは配列の要素を列挙する
+let itr = data_ary[Symbol.iterator]();
+let d;
+while (d = itr.next()) { //配列の次の要素を取り出す
+    if (d.done) { break; }
+    console.log(d.done); //false,false,false 次の要素がないか
+    console.log(d.value); //one,two,three 次の要素の値
 }
