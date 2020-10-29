@@ -1,32 +1,17 @@
-const AUTHOR = 'YAMADA, Yoshihiro';
-
-// アプリを昨日単位に纏めるモジュール
-export class Member {
-    // コンストラクタの定義
-    constructor(firstName, lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-    // プロパティの定義
-    get firstName() {
-        return this._firstName;
-    }
-    set firstName(value) {
-        this._firstName = value;
-    }
-    get lastName() {
-        return this._lastName;
-    }
-    set lastName(value) {
-        this._lastName = value;
-    }
-    // メソッドの定義
-    getName() {
-        return this.lastName + this.firstName;
-    }
-};
-export class Area {
-    static getTriangle(base, height) {
-        return base * height / 2;
-    }
+let data_ary = ['one', 'two', 'three'];
+let data_str = 'あいうえお';
+let data_map = new Map([
+    ['MON', '月曜'],
+    ['TUE', '火曜'],
+    ['WED', '水曜']
+]);
+// for...ofでオブジェクトの内容を列挙(イテレーター)できる
+for (let d of data_ary) {
+    console.log(d); //one,two,three
+}
+for (let d of data_str) {
+    console.log(d); //あ,い,う,え,お
+}
+for (let [key, value] of data_map) {
+    console.log(`${key}:${value}`); //MON:月曜,TUE:火曜,WED:水曜
 }
