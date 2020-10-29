@@ -1,17 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var getSelectValue = function (name) {
-        var result = [];
-        var elems = document.getElementById(name).options;
-        for (var i = 0, len = elems.length; i < len; i++) {
-            var elem = elems.item(i);
-            if (elem.selected) {
-                result.push(elem.value);
-            }
-        }
-        return result;
-    }
-    document.getElementById('btn').addEventListener('click', function () {
-        window.alert(getSelectValue('food'));
-    }, false);
+    document.getElementById('file').addEventListener('change', function (e) {
+        var input = document.getElementById('file').files[0];
+        var reader = new FileReader();
+        reader.addEventListener('load', function () {
+            document.getElementById('result').src = reader.result;
+            console.log(reader.result);
+        }, true);
+        reader.readAsDataURL(input);
+    }, true);
 }, false);
-
