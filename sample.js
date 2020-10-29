@@ -1,8 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var logo = document.getElementById('logo');
-    var attrs = logo.attributes;
-    for (var i = 0, len = attrs.length; i < len; i++) {
-        var attr = attrs.item(i);
-        console.log(attr.name + ':' + attr.value);
-    }
+    document.getElementById('btn').addEventListener('click', function () {
+        var result = [];
+        var foods = document.getElementsByName('food');
+
+        for (var i = 0, len = foods.length; i < len; i++) {
+            var food = foods.item(i);
+            if (food.checked) {
+                result.push(food.value);
+            }
+        }
+        window.alert(result.toString());
+    }, false);
 }, false);
