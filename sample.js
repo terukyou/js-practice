@@ -1,28 +1,13 @@
-function* myGenerator() {
-    yield 'あいうえお'; //returnがいつも同じ値を返すのに対し、yieldはループの都度順番に返す
-    yield 'かきくけこ';
-    yield 'さしすせそ';
-}
-for (let t of myGenerator()) {
-    console.log(t);
-}
-
-class MyIterator {
-    // 引数経由で渡された配列をdataプロパティに設定
-    constructor(data) {
-        this.data = data;
-        this[Symbol.iterator] = function* () {
-            let current = 0;
-            let that = this;
-            while (current < that.data.length) {
-                yield that.data[current++];
-            }
-        }
+let data = {
+    red: '赤色',
+    yellow: '黄色'
+};
+// dataオブジェクトに対して存在しないプロパティが出た時？を出す
+let proxy = new Proxy(data, {
+    get(target, prop) {
+        return prop in target ? target[prop] : '?';
     }
+});
 
-}
-
-let itr = new MyIterator(['one', 'two', 'three']);
-for (let value of itr) {
-    console.log(value);
-}
+console.log(proxy.red);
+console.log(proxy.nothing);
