@@ -1,13 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var data = {
-        title: 'Javaポケットリファレンス',
-        price: 2680,
-        handleEvent: function () { //handleEventメソッドを作成することで↓
-            console.log(this.title + '/' + this.price + '円');
-        }
+    var Counter = function (elem) {
+        this.count = 0;
+        this.elem = elem;
+        //アロー関数で描くことでthisがCounterオブジェの中のthisになる
+        // アロー関数じゃないとthisはボタン元のthisに...
+        elem.addEventListener('click', () => {
+            this.count++;
+            this.show();
+        }, false);
     };
-    //第二引数にオブジェクトを指定できる(これがないとthisがボタン元からになる)
-    document.getElementById('btn').addEventListener('click', data, false);
+
+    Counter.prototype.show = function () {
+        console.log(this.elem.id + 'は' + this.count + '回クリックされました');
+    }
+    var c = new Counter(document.getElementById('btn'));
 }, false);
 
 
