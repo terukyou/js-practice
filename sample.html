@@ -6,7 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="button" value="タイマー停止" id="btn">
+    <form method="post" action="sample.php">
+        <label for="name">名前:</label>
+        <input type="text" name="name" id="name" size="15">
+        <input type="button" value="送信" id="btn" name="btn">
+    </form>
     <div id="result"></div>
     <script src="sample.js"></script>
 </body>
